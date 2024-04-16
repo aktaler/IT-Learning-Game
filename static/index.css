@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    color: white;
+    background-image: linear-gradient(to right, #164c7b, #11a9d4);
+    min-width: 370px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 2rem;
+    background-image: linear-gradient(to right, #072b4b, #0853a9);
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+    
+}
+
+.user_details {
+    display: flex;
+    align-items: center;
+}
+
+.user_details span {
+    font-size: 1rem;
+    margin-right: 1rem;
+    letter-spacing: 2px;
+}
+
+.user_details button {   
+    transition: 0.2s ease-in;
+    color: white;
+    font-weight: 900;
+    background-color: #1e98ae;
+    padding: 0.2rem .7rem;
+    border: black 1px;
+    border-radius: 3px;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.user_details button:hover { 
+    background-color: #c9840e; 
+}
+
+.user_details button:active {
+    background-color: #7a4e02; 
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 3rem 10%;
+}
+
+.tile {
+    background-image: linear-gradient(to right, #072b4b, #0853a9);
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+    box-shadow: 15px 15px 5px  #021526;
+}
+
+.tile h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+.tile p {
+    margin-top: 0.5rem;
+}
