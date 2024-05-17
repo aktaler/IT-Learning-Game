@@ -1,0 +1,82 @@
+{{ if eq .ID "loginView" }}
+<div id= "login_Tile"class="tile">
+    <form id="loginForm" hx-post="/login/login" hx-target="closest .tile_map" hx-swap="outerHTML">
+        <h2>Login</h2>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required></input>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required></input>
+        <button type="submit">Login</button>
+    </form>
+</div>
+{{ end }}
+
+{{ if eq .ID "signupView" }}
+<div id= "signup_Tile"class="tile">
+    <form id="signup_Form" hx-post="/signup/signup" hx-target="closest .tile_map" hx-swap="beforeend">
+        <h2>Signup</h2>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required></input>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required></input>
+        <button type="submit">Signup</button>
+    </form>
+</div>
+{{ end }}
+
+{{ if eq .ID "infoView"}}
+<div id= "info_Tile"class="tile">
+    <h2>{{ .Title }}</h2>
+    <p>{{ .Content }}</p>
+    <script>
+        // wrap this inside a invoked function expression to encapsulate from other instances
+        (function() {
+            // handle the removal of the info tile
+            var nearestInfoTile = document.currentScript.closest("div");
+
+            nearestInfoTile.addEventListener("transitionend", function() {
+                // check if opacity is 0, indicating that this element should be removed
+                if(nearestInfoTile.style.opacity === "0") {
+                    // Gradually reduce the overall height of the element (including margin and padding) to 0 before removing it
+                    var computedStyle = window.getComputedStyle(nearestInfoTile);
+                    
+                    var currentHeight = parseFloat(computedStyle.height);
+                    var currentBottomMargin = parseFloat(computedStyle.marginBottom);
+                    var currentPaddingTop = parseFloat(computedStyle.paddingTop);
+                    var currentPaddingBottom = parseFloat(computedStyle.paddingBottom);
+                    
+                    var interval = setInterval(function() {
+                        // Decrease the values incrementally
+                        currentHeight -= 1;
+                        if (currentBottomMargin > 0) {
+                            currentBottomMargin -= .5;
+                        }
+                        if (currentPaddingTop > 0) {
+                            currentPaddingTop -= .5;
+                        }
+                        if (currentPaddingBottom > 0) {
+                            currentPaddingBottom -= .5;
+                        }
+                        
+                        if (currentHeight <= 0) {
+                            clearInterval(interval);
+                            nearestInfoTile.remove();
+                        } else {
+                            nearestInfoTile.style.height = currentHeight + "px";
+                            nearestInfoTile.style.marginBottom = currentBottomMargin + "px";
+                            nearestInfoTile.style.paddingTop = currentPaddingTop + "px";
+                            nearestInfoTile.style.paddingBottom = currentPaddingBottom + "px";
+                        }
+                    }, 10); // Interval period in milliseconds
+                }
+            });
+
+            setTimeout(function() {
+                nearestInfoTile.style.opacity = 0;
+
+            }, 3000);
+            
+        })();
+    </script> 
+</div>
+{{ end }}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,19 +11,14 @@
     
     <header>
         <h1>Lernspiel IT</h1>
-        <div class="user_details">
-            <span>Username</span>
-            <button>Logout</button>
+        <div id="user_details" class="user_details">
+            {{ block "user_details" . }}
+            {{ end }}
         </div>
     </header>
+    
     <main>
-        <div class="tile">
-            <h2>Tile 1</h2>
-            <p>This is some content for tile 1.</p>
-        </div>
-        <div class="tile">
-            <h2>Tile 2</h2>
-            <p>This is some content for tile 2, which is optional.</p>
+        <div id="tile_map1" class="tile_map">
         </div>
     </main>
     

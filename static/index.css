@@ -4,7 +4,7 @@ body {
     font-family: Arial;
     color: white;
     background-image: linear-gradient(to right, #164c7b, #11a9d4);
-    min-width: 370px;
+    min-width: 450px;
 }
 
 header {
@@ -36,6 +36,7 @@ header h1 {
 
 .user_details button {   
     transition: 0.2s ease-in;
+    margin: 0.1rem;
     color: white;
     font-weight: 900;
     background-color: #1e98ae;
@@ -55,18 +56,35 @@ header h1 {
     background-color: #7a4e02; 
 }
 
+.user_details button.pressed {
+    background-color: #7e6337;
+}
+
+
 main {
-    display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
     padding: 3rem 10%;
 }
 
-.tile {
+.tile_map {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.tile { 
+    opacity: 1;
+    transition: opacity .7s ease-in-out;
+    margin-bottom: 2rem;
     background-image: linear-gradient(to right, #072b4b, #0853a9);
     padding: 0.7rem 1rem;
     border-radius: 10px;
     box-shadow: 15px 15px 5px  #021526;
+}
+
+.tile.htmx-added {
+    opacity: 0;
 }
 
 .tile h2 {
@@ -76,4 +94,39 @@ main {
 
 .tile p {
     margin-top: 0.5rem;
+}
+
+.tile form{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+
+    label {
+        margin-bottom: 0.5rem;
+    }
+    input {
+        color: #021526;
+        width: 10rem;
+        margin-bottom: 1rem;
+    }
+    button {
+        width: 5rem;
+        transition: 0.2s ease-in;
+        color: white;
+        font-weight: 600;
+        background-color: #1e98ae;
+        border: black 1px;
+        border-radius: 3px;
+        font-size: .7rem;
+        letter-spacing: 1px;
+        cursor: pointer;
+    }
+        
+    button:hover { 
+        background-color: #c9840e; 
+    }
+        
+     button:active {
+        background-color: #7a4e02; 
+    }
 }
