@@ -20,7 +20,7 @@ header {
 header h1 {
     font-size: 2rem;
     margin: 0;
-    
+    cursor: pointer;
 }
 
 .user_details {
@@ -105,7 +105,8 @@ main {
         margin-bottom: 0.5rem;
     }
     input {
-        color: #021526;
+        color: black;
+        background-color: white;
         width: 10rem;
         margin-bottom: 1rem;
     }

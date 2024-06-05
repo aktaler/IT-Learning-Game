@@ -1,6 +1,10 @@
 {{ if eq .ID "loginView" }}
 <div id= "login_Tile"class="tile">
-    <form id="loginForm" hx-post="/login/login" hx-target="closest .tile_map" hx-swap="outerHTML">
+    <form id="loginForm" 
+    hx-post="/login/login"
+    hx-target="closest .tile_map"
+    hx-target-401="closest .tile_map"
+    hx-swap="innerHTML">
         <h2>Login</h2>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required></input>
@@ -13,7 +17,11 @@
 
 {{ if eq .ID "signupView" }}
 <div id= "signup_Tile"class="tile">
-    <form id="signup_Form" hx-post="/signup/signup" hx-target="closest .tile_map" hx-swap="beforeend">
+    <form id="signup_Form" 
+    hx-post="/signup/signup"
+    hx-target="closest .tile_map" 
+    hx-swap="beforeend" 
+    hx-on--after-request="this.reset()">
         <h2>Signup</h2>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required></input>
@@ -25,7 +33,7 @@
 {{ end }}
 
 {{ if eq .ID "infoView"}}
-<div id= "info_Tile"class="tile">
+<div id= "info_Tile"class="tile" {{ .OobAttribute }}>
     <h2>{{ .Title }}</h2>
     <p>{{ .Content }}</p>
     <script>
@@ -78,5 +86,12 @@
             
         })();
     </script> 
+</div>
+{{ end }}
+
+{{ if eq .ID "accountView" }}
+<div id= "account_Tile"class="tile">
+    <h2>{{ .Title }}</h2>
+    <p>{{ .Content }}</p>
 </div>
 {{ end }}

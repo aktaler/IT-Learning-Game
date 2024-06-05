@@ -1,67 +1,86 @@
-{{ define "user_details" -}}
+{{ define "user_details" }}
 {{ if .Loggedin}}
-
-    <span>Username</span>
-
-    <button>Logout</button>
-
+    
+    <div 
+    id="user_details" 
+    class="user_details"
+    {{ .OobAttribute }}>    
+        <div id="loggedin_menu">
+            <span>{{ .Username }}</span>
+            <button
+            id="logout_Button"
+            hx-get="/logout/"
+            hx-target="body"
+            >Logout</button>
+        </div>
+    </div>
+        
 {{ else }}
 
-    <button
-    id="login_Button"
-    hx-get="/login/tile"
-    hx-trigger="click"
-    hx-target="#tile_map1"
-    hx-swap="innerHTML"
-    >Login</button>
-    
-    <button
-    id="signup_Button"
-    hx-get="/signup/tile"
-    hx-trigger="click"
-    hx-target="#tile_map1"
-    hx-swap="innerHTML"
-    >Signup</button>
+    <div 
+    id="user_details" 
+    class="user_details"
+    {{ .OobAttribute }}>
+        <div id="loggedout_menu">
+            <button
+            id="login_Button"
+            hx-get="/login/tile"
+            hx-trigger="click"
+            hx-target="#tile_map1"
+            hx-swap="innerHTML"
+            >Login</button>
+            
+            <button
+            id="signup_Button"
+            hx-get="/signup/tile"
+            hx-trigger="click"
+            hx-target="#tile_map1"
+            hx-swap="innerHTML"
+            >Signup</button>
 
-    <script>
-        // Add an event listener to the htmx requests issued by the login Button
-        document.getElementById('login_Button').addEventListener('htmx:beforeRequest', function(evt) {
-    
-            if (document.querySelector('#tile_map1 #login_Tile')) {
-                // Prevent the request if the login page is already loaded
-                evt.preventDefault();
-            }
-        
-        });
-        // Add an event listener to the htmx requests issued by the signup Button
-        document.getElementById('signup_Button').addEventListener('htmx:beforeRequest', function(evt) {
-    
-            if (document.querySelector('#tile_map1 #signup_Tile')) {
-            // Prevent the request if the signup page is already loaded
-            evt.preventDefault();
-            }
+            <script>
+                // Add an event listener to the htmx requests issued by the login Button
+                document.getElementById('login_Button').addEventListener('htmx:beforeRequest', function(evt) {
+            
+                    if (document.querySelector('#tile_map1 #login_Tile')) {
+                        // Prevent the request if the login page is already loaded
+                        evt.preventDefault();
+                    }
+                
+                });
+                // Add an event listener to the htmx requests issued by the signup Button
+                document.getElementById('signup_Button').addEventListener('htmx:beforeRequest', function(evt) {
+            
+                    if (document.querySelector('#tile_map1 #signup_Tile')) {
+                    // Prevent the request if the signup page is already loaded
+                    evt.preventDefault();
+                    }
 
-        });
+                });
 
-        // Manage visual state changes of the button here
-        //TODO create real custom Event for Button changes, which then can get triggered by the tiles themself
-        document.body.addEventListener('htmx:afterRequest', function(evt) {
-        
-        if (document.querySelector('#tile_map1 #login_Tile')) {
-            document.getElementById('login_Button').classList.add('pressed');  
-        } else {
-            document.getElementById('login_Button').classList.remove('pressed');
-        }
+                // Manage visual state changes of the button here
+                //TODO create real custom Event for Button changes, which then can get triggered by the tiles themself
+                document.body.addEventListener('htmx:afterRequest', function(evt) {
+                    if(document.querySelector('#login_button')) { 
+                        if (document.querySelector('#tile_map1 #login_Tile')) {
+                            document.getElementById('login_Button').classList.add('pressed');  
+                        } else {
+                            document.getElementById('login_Button').classList.remove('pressed');
+                        }
+                    }
+                    
+                    if(document.querySelector('#signup_button')) {
+                        if (document.querySelector('#tile_map1 #signup_Tile')) {
+                            document.getElementById('signup_Button').classList.add('pressed');  
+                        } else {
+                            document.getElementById('signup_Button').classList.remove('pressed');
+                        }
+                    }   
+                });
 
-        if (document.querySelector('#tile_map1 #signup_Tile')) {
-            document.getElementById('signup_Button').classList.add('pressed');  
-        } else {
-            document.getElementById('signup_Button').classList.remove('pressed');
-        }
-
-        });
-
-    </script>
+            </script>
+        </div>
+    </div>
 
 {{ end }}
 {{ end }}

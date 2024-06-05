@@ -4,17 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lernspiel IT</title>
-  <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/response-targets.js"></script>
   <link rel="stylesheet" href="/static/index.css"/>
 </head>
-<body>
+<body hx-ext="response-targets">
     
     <header>
-        <h1>Lernspiel IT</h1>
-        <div id="user_details" class="user_details">
-            {{ block "user_details" . }}
-            {{ end }}
-        </div>
+        <h1 hx-get="/" hx-trigger="click" hx-target="body">Lernspiel IT</h1>
+        {{ block "user_details" . }}
+        {{ end }}
     </header>
     
     <main>
